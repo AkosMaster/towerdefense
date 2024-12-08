@@ -23,3 +23,5 @@ c:\Users\akosd\OneDrive\Desktop\TowerDefense\obj\Debug\net8.0\refint\towerdefens
 c:\Users\akosd\OneDrive\Desktop\TowerDefense\obj\Debug\net8.0\towerdefense.pdb
 c:\Users\akosd\OneDrive\Desktop\TowerDefense\obj\Debug\net8.0\towerdefense.genruntimeconfig.cache
 c:\Users\akosd\OneDrive\Desktop\TowerDefense\obj\Debug\net8.0\ref\towerdefense.dll
+c:\Users\akosd\OneDrive\Desktop\TowerDefense\obj\Debug\net8.0\towerdefense.sourcelink.json
+c:\Users\akosd\OneDrive\Desktop\TowerDefense\bin\Debug\net8.0\Content\player1.xnb
