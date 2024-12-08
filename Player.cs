@@ -4,11 +4,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public class Player : Sprite, Actor
+public class Player : Actor
 {
 
-    public Player(Texture2D texture) : base(texture){
-
+    private Sprite sprite;
+    public Sprite getSprite() {
+        return sprite;
+    }
+    public Player(Texture2D texture){
+        sprite = new Sprite(texture);
     }
 
     public void Update(GameTime gameTime) {
@@ -17,16 +21,15 @@ public class Player : Sprite, Actor
         float speed = 1;
         float elapsed = gameTime.ElapsedGameTime.Milliseconds;
 
-        if (keyState.IsKeyDown(Keys.W)) {
+        if (keyState.IsKeyDown(Keys.W))
             move += new Vector2(0, -speed*elapsed);
-        } else if (keyState.IsKeyDown(Keys.S)) {
+        if (keyState.IsKeyDown(Keys.S))
             move += new Vector2(0, speed*elapsed);
-        }  else if (keyState.IsKeyDown(Keys.A)) {
+        if (keyState.IsKeyDown(Keys.A))
             move += new Vector2(-speed*elapsed, 0);
-        }  else if (keyState.IsKeyDown(Keys.D)) {
+        if (keyState.IsKeyDown(Keys.D))
             move += new Vector2(speed*elapsed, 0);
-        } 
 
-        setSpritePosition(getSpritePosition() + move);
+        sprite.setSpritePosition(sprite.getSpritePosition() + move);
     }
 }

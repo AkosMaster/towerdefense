@@ -15,6 +15,8 @@ public class Sprite
         spriteTexture = _texture;
         spritePosition = Vector2.Zero;
         spriteScale = new Vector2(1,1);
+
+        SpriteManager.spriteManager.registerSprite(this);
     }
 
     public void setSpriteScale(Vector2 scale) {

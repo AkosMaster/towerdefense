@@ -12,9 +12,6 @@ public class Game1 : Game
 
     private Player player;
 
-    private List<Sprite> gameSprites = new List<Sprite>();
-    private List<Actor> gameActors = new List<Actor>();
-
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -37,10 +34,9 @@ public class Game1 : Game
 
         Texture2D p1tex = Content.Load<Texture2D>("player1");
         player = new Player(p1tex);
-        gameSprites.Add(player);
-        gameActors.Add(player);
+        ActorManager.actorManager.registerActor(player);
 
-        player.setSpriteScale(new Vector2(10,10));
+        player.getSprite().setSpriteScale(new Vector2(10,10));
     }
 
     protected override void Update(GameTime gameTime)
@@ -48,9 +44,7 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        foreach (Actor actor in gameActors) {
-            actor.Update(gameTime);
-        }
+        ActorManager.actorManager.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -59,11 +53,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // pointClamp makes upscaled sprites look sharp
-        foreach (Sprite sprite in gameSprites) {
-            sprite.Draw(gameTime, _spriteBatch);
-        }
-        _spriteBatch.End();
+        SpriteManager.spriteManager.Draw(gameTime, _spriteBatch);
 
         base.Draw(gameTime);
     }
