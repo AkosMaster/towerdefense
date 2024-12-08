@@ -13,6 +13,7 @@ public class Game1 : Game
     private Player player;
 
     private List<Sprite> gameSprites = new List<Sprite>();
+    private List<Actor> gameActors = new List<Actor>();
 
     public Game1()
     {
@@ -37,6 +38,7 @@ public class Game1 : Game
         Texture2D p1tex = Content.Load<Texture2D>("player1");
         player = new Player(p1tex);
         gameSprites.Add(player);
+        gameActors.Add(player);
 
         player.setSpriteScale(new Vector2(10,10));
     }
@@ -46,7 +48,9 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        foreach (Actor actor in gameActors) {
+            actor.Update(gameTime);
+        }
 
         base.Update(gameTime);
     }
