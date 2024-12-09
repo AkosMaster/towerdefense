@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public class Player : Actor
+public class Player : IActor
 {
 
-    private Sprite sprite;
+    private readonly Sprite sprite;
     public Sprite getSprite() {
         return sprite;
     }

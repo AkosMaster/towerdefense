@@ -7,7 +7,7 @@ namespace towerdefense;
 
 public class Sprite
 {
-    private Texture2D spriteTexture;
+    private readonly Texture2D spriteTexture;
 
     private Vector2 spritePosition;
     private Vector2 spriteScale;

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public interface Actor
+public interface IActor
 {
     public void Update(GameTime gameTime);
 }

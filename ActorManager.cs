@@ -7,13 +7,13 @@ namespace towerdefense;
 
 public class ActorManager {
 
-    private List<Actor> gameActors = new List<Actor>();
-    public void registerActor(Actor actor) {
+    private readonly List<IActor> gameActors = new List<IActor>();
+    public void registerActor(IActor actor) {
         gameActors.Add(actor);
     }
 
     public void Update(GameTime gameTime) {
-        foreach(Actor actor in gameActors) {
+        foreach(IActor actor in gameActors) {
             actor.Update(gameTime);
         }
     }
