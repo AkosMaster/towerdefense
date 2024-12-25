@@ -41,7 +41,7 @@ public class Game1 : Game
         player = new Player(p1tex);
         ActorManager.actorManager.registerActor(player);
 
-        player.getSprite().setSpriteScale(new Vector2(10,10));
+        
     }
 
     protected override void Update(GameTime gameTime)

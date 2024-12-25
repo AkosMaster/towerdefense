@@ -8,11 +8,13 @@ public class Player : IActor
 {
 
     private readonly Sprite sprite;
+    public Transform transform = new Transform();
     public Sprite getSprite() {
         return sprite;
     }
     public Player(Texture2D texture){
         sprite = new Sprite(texture);
+        sprite.transform.parent = transform;
     }
 
     public void Update(GameTime gameTime) {
@@ -30,6 +32,6 @@ public class Player : IActor
         if (keyState.IsKeyDown(Keys.D))
             move += new Vector2(speed*elapsed, 0);
 
-        sprite.setSpritePosition(sprite.getSpritePosition() + move);
+        transform.localPosition += move;
     }
 }
