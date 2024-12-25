@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public class Lane
+public class Lane : IActor
 {
     private List<Vector2> points;
 
@@ -19,5 +19,17 @@ public class Lane
     }
     public Vector2 getPoint(int index) {
         return points[index];
+    }
+
+    float elapsed = 0;
+    float spawnInterval = 2000;
+    public void Update(GameTime gameTime) {
+        elapsed += gameTime.ElapsedGameTime.Milliseconds;
+
+        if (elapsed > spawnInterval) {
+            elapsed -= spawnInterval;
+            Enemy enemy = new Enemy(this);
+            ActorManager.actorManager.registerActor(enemy);
+        }
     }
 }

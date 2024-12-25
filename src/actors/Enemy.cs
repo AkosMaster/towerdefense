@@ -14,9 +14,9 @@ public class Enemy : IActor
     }
 
     private Lane lane;
-    public Enemy(Texture2D texture, Lane _lane){
+    public Enemy(Lane _lane){
         lane = _lane;
-        sprite = new Sprite(texture);
+        sprite = new Sprite( Game1.contentManager.Load<Texture2D>("player1"));
         sprite.transform.parent = transform;
         transform.localScale = new Vector2(10,10);
     }

@@ -8,11 +8,17 @@ namespace towerdefense;
 public class ActorManager {
 
     private readonly List<IActor> gameActors = new List<IActor>();
+    private readonly List<IActor> newGameActors = new List<IActor>();
     public void registerActor(IActor actor) {
-        gameActors.Add(actor);
+        newGameActors.Add(actor);
     }
 
     public void Update(GameTime gameTime) {
+        foreach(IActor actor in newGameActors) {
+            gameActors.Add(actor);
+        }
+        newGameActors.Clear();
+        
         foreach(IActor actor in gameActors) {
             actor.Update(gameTime);
         }

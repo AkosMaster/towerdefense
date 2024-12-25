@@ -12,8 +12,8 @@ public class Player : IActor
     public Sprite getSprite() {
         return sprite;
     }
-    public Player(Texture2D texture){
-        sprite = new Sprite(texture);
+    public Player(){
+        sprite = new Sprite(Game1.contentManager.Load<Texture2D>("player1"));
         sprite.transform.parent = transform;
         transform.localScale = new Vector2(10,10);
     }

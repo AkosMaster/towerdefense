@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Net.Mime;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,6 +12,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private Player player;
 
+    public static ContentManager contentManager;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -17,8 +21,6 @@ public class Game1 : Game
         IsMouseVisible = true;
         Window.AllowUserResizing = true;
     }
-
-
 
     protected override void Initialize()
     {
@@ -33,20 +35,16 @@ public class Game1 : Game
     int virtualHeight = 1080; // relative height of game
     protected override void LoadContent()
     {
+        contentManager = Content;
         targetBatch = new SpriteBatch(GraphicsDevice);
         renderTarget = new RenderTarget2D(GraphicsDevice, virtualWidth, virtualHeight);
         // TODO: use this.Content to load your game content here
 
-        Texture2D p1tex = Content.Load<Texture2D>("player1");
-        player = new Player(p1tex);
+        player = new Player();
         ActorManager.actorManager.registerActor(player);
 
-        Lane lane1 = new Lane(new List<Vector2>{new Vector2(400,400), new Vector2(500, 1000), new Vector2(1000,1000)});
-
-        Enemy enemy = new Enemy(p1tex, lane1);
-        ActorManager.actorManager.registerActor(enemy);
-
-        
+        Lane lane1 = new Lane(new List<Vector2>{new Vector2(400,400), new Vector2(500, 600), new Vector2(1000,600)});
+        ActorManager.actorManager.registerActor(lane1);
     }
 
     protected override void Update(GameTime gameTime)
