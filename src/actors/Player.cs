@@ -15,12 +15,13 @@ public class Player : IActor
     public Player(Texture2D texture){
         sprite = new Sprite(texture);
         sprite.transform.parent = transform;
+        transform.localScale = new Vector2(10,10);
     }
 
     public void Update(GameTime gameTime) {
         KeyboardState keyState = Keyboard.GetState();
         Vector2 move = Vector2.Zero;
-        float speed = 1;
+        float speed = 0.15f;
         float elapsed = gameTime.ElapsedGameTime.Milliseconds;
 
         if (keyState.IsKeyDown(Keys.W))

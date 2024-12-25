@@ -29,8 +29,8 @@ public class Game1 : Game
     private SpriteBatch targetBatch;
     private RenderTarget2D renderTarget;
 
-    int virtualWidth = 320; // relative width of game
-    int virtualHeight = 240; // relative height of game
+    int virtualWidth = 1920; // relative width of game
+    int virtualHeight = 1080; // relative height of game
     protected override void LoadContent()
     {
         targetBatch = new SpriteBatch(GraphicsDevice);
@@ -40,6 +40,11 @@ public class Game1 : Game
         Texture2D p1tex = Content.Load<Texture2D>("player1");
         player = new Player(p1tex);
         ActorManager.actorManager.registerActor(player);
+
+        Lane lane1 = new Lane(new List<Vector2>{new Vector2(400,400), new Vector2(500, 1000), new Vector2(1000,1000)});
+
+        Enemy enemy = new Enemy(p1tex, lane1);
+        ActorManager.actorManager.registerActor(enemy);
 
         
     }
