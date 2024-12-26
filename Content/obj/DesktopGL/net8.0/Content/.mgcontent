@@ -4,9 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/player1.png</File>
+    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/UFO(1).png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>ufo1.png</File>
   </DestFiles>
 </SourceFileCollection>

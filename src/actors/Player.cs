@@ -4,21 +4,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public class Player : IActor
+public class Player : GameObject
 {
-
-    private readonly Sprite sprite;
-    public Transform transform = new Transform();
-    public Sprite getSprite() {
-        return sprite;
-    }
     public Player(){
-        sprite = new Sprite(Game1.contentManager.Load<Texture2D>("player1"));
-        sprite.transform.parent = transform;
-        transform.localScale = new Vector2(10,10);
+        setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("archer")));
     }
 
-    public void Update(GameTime gameTime) {
+    public override void Update(GameTime gameTime) {
         KeyboardState keyState = Keyboard.GetState();
         Vector2 move = Vector2.Zero;
         float speed = 0.15f;

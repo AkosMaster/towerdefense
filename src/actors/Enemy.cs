@@ -4,29 +4,21 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public class Enemy : IActor
+public class Enemy : GameObject
 {
-
-    private readonly Sprite sprite;
-    public Transform transform = new Transform();
-    public Sprite getSprite() {
-        return sprite;
-    }
 
     private Lane lane;
     public Enemy(Lane _lane){
         lane = _lane;
-        sprite = new Sprite( Game1.contentManager.Load<Texture2D>("player1"));
-        sprite.transform.parent = transform;
-        transform.localScale = new Vector2(10,10);
+        setSprite(new Sprite( Game1.contentManager.Load<Texture2D>("ufo1")));
+
     }
-    
     private int currentPointIndex = -1;
     private Vector2 currentPoint;
     private bool reachedGoal = true;
 
     private float speed = 0.05f;
-    public void Update(GameTime gameTime) {
+    public override void Update(GameTime gameTime) {
         if (reachedGoal) {
             currentPointIndex++;
             if (currentPointIndex < lane.getPointCount()) {
