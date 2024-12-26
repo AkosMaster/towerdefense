@@ -11,7 +11,7 @@ public abstract class GameObject : IActor
     public Transform transform = new Transform();
 
     public GameObject(){
-        
+        ActorManager.actorManager.registerActor(this);
     }
 
     public void setSprite(Sprite _sprite) {

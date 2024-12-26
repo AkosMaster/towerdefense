@@ -41,7 +41,6 @@ public class Game1 : Game
         // TODO: use this.Content to load your game content here
 
         player = new Player();
-        ActorManager.actorManager.registerActor(player);
 
         Lane lane1 = new Lane(new List<Vector2>{new Vector2(400,400), new Vector2(500, 600), new Vector2(1000,600)});
         ActorManager.actorManager.registerActor(lane1);

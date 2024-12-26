@@ -1,4 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer_level_1.png","c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/bin/DesktopGL/Content/tower1.xnb","TextureProcessor","Texture2DContent",6891,86405,0.1435674
 "c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer.png","c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/bin/DesktopGL/Content/archer.xnb","TextureProcessor","Texture2DContent",1134,7837,0.1364598
 "c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/player1.png","c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/bin/DesktopGL/Content/player1.xnb","TextureProcessor","Texture2DContent",129,341,0.1436028
 "c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/UFO(1).png","c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/bin/DesktopGL/Content/ufo1.xnb","TextureProcessor","Texture2DContent",2752,20565,0.2590575
+"c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/wizard_bullet.png","c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/bin/DesktopGL/Content/bullet1.xnb","TextureProcessor","Texture2DContent",361,925,0.0071436

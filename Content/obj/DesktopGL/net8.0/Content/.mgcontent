@@ -4,13 +4,17 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer_level_1.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/player1.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/UFO(1).png</File>
+    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/wizard_bullet.png</File>
   </SourceFiles>
   <DestFiles>
+    <File>tower1.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>ufo1.png</File>
+    <File>bullet1.png</File>
   </DestFiles>
 </SourceFileCollection>

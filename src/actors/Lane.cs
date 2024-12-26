@@ -29,7 +29,6 @@ public class Lane : IActor
         if (elapsed > spawnInterval) {
             elapsed -= spawnInterval;
             Enemy enemy = new Enemy(this);
-            ActorManager.actorManager.registerActor(enemy);
         }
     }
 }
