@@ -6,7 +6,7 @@ namespace towerdefense;
 
 public class Player : GameObject
 {
-    public Player(){
+    public Player() : base("player") {
         setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("archer")));
     }
 

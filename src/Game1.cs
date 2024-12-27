@@ -44,6 +44,9 @@ public class Game1 : Game
 
         Lane lane1 = new Lane(new List<Vector2>{new Vector2(400,400), new Vector2(500, 600), new Vector2(1000,600)});
         ActorManager.actorManager.registerActor(lane1);
+
+        Tower t1 = new Tower();
+        t1.transform.localPosition = new Vector2(500,200);
     }
 
     protected override void Update(GameTime gameTime)
@@ -61,7 +64,7 @@ public class Game1 : Game
         GraphicsDevice.SetRenderTarget(renderTarget);
 
         // normal draw calls
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.LawnGreen);
 
         // draw game sprites
         SpriteManager.spriteManager.Draw(gameTime, targetBatch);

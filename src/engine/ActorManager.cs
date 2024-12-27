@@ -13,6 +13,9 @@ public class ActorManager {
         newGameActors.Add(actor);
     }
 
+    public List<IActor> getActors() {
+        return gameActors;
+    }
     public void Update(GameTime gameTime) {
         foreach(IActor actor in newGameActors) {
             gameActors.Add(actor);

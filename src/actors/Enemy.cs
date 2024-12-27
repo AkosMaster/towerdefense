@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -8,7 +9,7 @@ public class Enemy : GameObject
 {
 
     private Lane lane;
-    public Enemy(Lane _lane){
+    public Enemy(Lane _lane) : base("enemy"){
         lane = _lane;
         setSprite(new Sprite( Game1.contentManager.Load<Texture2D>("ufo1")));
 

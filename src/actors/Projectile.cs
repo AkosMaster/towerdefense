@@ -10,12 +10,12 @@ public class Projectile : GameObject
     public float speed = 0.1f;
     GameObject target;
     Vector2 direction;
-    public Projectile(GameObject _target){
+    public Projectile(GameObject _target) : base("projectile"){
         target = _target;
         setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
         targetMode = true;
     }
-    public Projectile(Vector2 _direction){
+    public Projectile(Vector2 _direction) : base("projectile"){
         direction = _direction;
         direction.Normalize();
         setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
@@ -27,6 +27,8 @@ public class Projectile : GameObject
             transform.localPosition += directionVector * speed * gameTime.ElapsedGameTime.Milliseconds;
         } else {
             transform.localPosition += direction * speed * gameTime.ElapsedGameTime.Milliseconds;
+
+            
         }
     }
 }
