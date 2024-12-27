@@ -12,7 +12,7 @@ public class Enemy : GameObject
     public Enemy(Lane _lane) : base("enemy"){
         lane = _lane;
         setSprite(new Sprite( Game1.contentManager.Load<Texture2D>("ufo1")));
-
+        collider.transform.localScale = new Vector2(10,10);
     }
     private int currentPointIndex = -1;
     private Vector2 currentPoint;

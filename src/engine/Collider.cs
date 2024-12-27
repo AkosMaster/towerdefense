@@ -9,7 +9,7 @@ public class Collider
 {
     public Transform transform = new Transform();
     
-    public bool isNear(Transform other) {
-        return Math.Abs((other.getPosition() - transform.getPosition()).Length()) < transform.getScale().X;
+    public bool isPointInside(Vector2 point) {
+        return Math.Abs((point - transform.getPosition()).Length()) < transform.getScale().X;
     }
 }

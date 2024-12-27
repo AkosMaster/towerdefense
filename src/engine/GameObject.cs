@@ -11,8 +11,9 @@ public abstract class GameObject : IActor
     public Sprite sprite;
     public Transform transform = new Transform();
     public Collider collider = new Collider();
-
-    public GameObject(string tag){
+    string tag;
+    public GameObject(string _tag){
+        tag = _tag;
         ActorManager.actorManager.registerActor(this);
         collider.transform.parent = transform;
 
@@ -20,6 +21,12 @@ public abstract class GameObject : IActor
             gameObjectsByTag.Add(tag, new List<GameObject>());
         }
         gameObjectsByTag[tag].Add(this);
+    }
+
+    public void Delete() {
+        ActorManager.actorManager.unregisterActor(this);
+        sprite.Delete();
+        gameObjectsByTag[tag].Remove(this);
     }
 
     public void setSprite(Sprite _sprite) {

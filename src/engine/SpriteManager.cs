@@ -10,6 +10,9 @@ public class SpriteManager {
     public void registerSprite(Sprite sprite) {
         gameSprites.Add(sprite);
     }
+    public void unregisterSprite(Sprite sprite) {
+        gameSprites.Remove(sprite);
+    }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
 

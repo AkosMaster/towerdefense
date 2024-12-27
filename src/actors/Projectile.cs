@@ -27,8 +27,14 @@ public class Projectile : GameObject
             transform.localPosition += directionVector * speed * gameTime.ElapsedGameTime.Milliseconds;
         } else {
             transform.localPosition += direction * speed * gameTime.ElapsedGameTime.Milliseconds;
+        }
 
-            
+        foreach(GameObject enemy in GameObject.getGameObjectsByTag("enemy")) {
+            if (enemy.collider.isPointInside(transform.getPosition())) {
+                enemy.Delete();
+                this.Delete();
+                return;
+            }
         }
     }
 }

@@ -16,6 +16,10 @@ public class Sprite
         SpriteManager.spriteManager.registerSprite(this);
     }
 
+    public void Delete() {
+        SpriteManager.spriteManager.unregisterSprite(this);
+    }
+
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
         spriteBatch.Draw(spriteTexture, transform.getPosition(), null,
         Color.White, 0f, Vector2.Zero, transform.getScale(), SpriteEffects.None, 0f);
