@@ -6,18 +6,18 @@ using Microsoft.Xna.Framework.Input;
 namespace towerdefense;
 public class SpriteManager {
 
-    private readonly List<Sprite> gameSprites = new List<Sprite>();
-    public void registerSprite(Sprite sprite) {
+    private readonly List<IDrawable> gameSprites = new List<IDrawable>();
+    public void registerSprite(IDrawable sprite) {
         gameSprites.Add(sprite);
     }
-    public void unregisterSprite(Sprite sprite) {
+    public void unregisterSprite(IDrawable sprite) {
         gameSprites.Remove(sprite);
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
 
         spriteBatch.Begin(samplerState: SamplerState.PointClamp); // pointClamp makes upscaled sprites look sharp
-        foreach (Sprite sprite in gameSprites) {
+        foreach (IDrawable sprite in gameSprites) {
             sprite.Draw(gameTime, spriteBatch);
         }
         spriteBatch.End();

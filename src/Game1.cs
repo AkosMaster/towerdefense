@@ -39,6 +39,9 @@ public class Game1 : Game
         targetBatch = new SpriteBatch(GraphicsDevice);
         renderTarget = new RenderTarget2D(GraphicsDevice, virtualWidth, virtualHeight);
         // TODO: use this.Content to load your game content here
+        
+        //Sprite bg = new Sprite(contentManager.Load<Texture2D>("bg1"));
+        //bg.transform.localScale = new Vector2(2,2);
 
         player = new Player();
 
@@ -47,6 +50,12 @@ public class Game1 : Game
 
         Tower t1 = new Tower();
         t1.transform.localPosition = new Vector2(500,200);
+
+        Tower t2 = new Tower();
+        t2.transform.localPosition = new Vector2(200,500);
+
+        Tower t3 = new Tower();
+        t3.transform.localPosition = new Vector2(1000,600);
     }
 
     protected override void Update(GameTime gameTime)

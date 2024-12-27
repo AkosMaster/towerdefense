@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,8 +20,8 @@ public class Tower : GameObject
 
         if (elapsed > shotInterval) {
             elapsed -= shotInterval;
-            
-            Projectile proj = new Projectile(new Vector2(-1,0));
+            double rotation = gameTime.TotalGameTime.TotalMilliseconds/1000f;
+            Projectile proj = new Projectile(new Vector2((float)Math.Sin(rotation),(float)Math.Cos(rotation)));
             proj.transform.localPosition = transform.localPosition;
         }
     }

@@ -5,7 +5,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public class Sprite
+public interface IDrawable {
+    public void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+}
+
+public class Sprite : IDrawable
 {
     private readonly Texture2D spriteTexture;
 
