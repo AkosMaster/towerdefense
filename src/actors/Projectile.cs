@@ -14,14 +14,14 @@ public class Projectile : GameObject
         target = _target;
         setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
         targetMode = true;
-        collider.shapes.Add(new CRectangle(new Vector2(0,0), new Vector2(1,1)));
+        collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     }
     public Projectile(Vector2 _direction) : base("projectile"){
         direction = _direction;
         direction.Normalize();
         setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
-        //collider.addShape(new CRectangle(new Vector2(0,0), new Vector2(1,1)));
-        collider.shapes.Add(new CRectangle(new Vector2(0,0), new Vector2(1,1)));
+        
+        collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     } 
     public override void Update(GameTime gameTime) {
         if (targetMode) {

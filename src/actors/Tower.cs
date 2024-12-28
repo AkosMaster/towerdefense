@@ -9,8 +9,8 @@ public class Tower : GameObject
 {
 
     public Tower() : base("tower") {
-        setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("tower1")));
-        sprite.transform.localScale = new Vector2(0.5f,0.5f);
+        setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("basic_mushroom")));
+        sprite.transform.localScale = new Vector2(0.2f,0.2f);
     }
     
     float elapsed = 0;
@@ -24,5 +24,7 @@ public class Tower : GameObject
             Projectile proj = new Projectile(new Vector2((float)Math.Sin(rotation),(float)Math.Cos(rotation)));
             proj.transform.localPosition = transform.localPosition;
         }
+
+        sprite.transform.localScale.Y = 0.2f + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds/700f)/50;
     }
 }

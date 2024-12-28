@@ -30,3 +30,5 @@ c:\Users\akosd\OneDrive\Desktop\TowerDefense\bin\Debug\net8.0\Content\archer.xnb
 c:\Users\akosd\OneDrive\Desktop\TowerDefense\bin\Debug\net8.0\Content\bullet1.xnb
 c:\Users\akosd\OneDrive\Desktop\TowerDefense\bin\Debug\net8.0\Content\tower1.xnb
 c:\Users\akosd\OneDrive\Desktop\TowerDefense\bin\Debug\net8.0\Content\bg1.xnb
+c:\Users\akosd\OneDrive\Desktop\TowerDefense\bin\Debug\net8.0\Content\basic_ant.xnb
+c:\Users\akosd\OneDrive\Desktop\TowerDefense\bin\Debug\net8.0\Content\basic_mushroom.xnb

@@ -6,6 +6,8 @@
   <SourceFiles>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer_level_1.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer.png</File>
+    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/basic_ant.png</File>
+    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/basic_mushroom.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/LXCfjf.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/player1.png</File>
     <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/UFO(1).png</File>
@@ -13,6 +15,8 @@
   </SourceFiles>
   <DestFiles>
     <File>tower1.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>bg1.png</File>
     <File xsi:nil="true" />

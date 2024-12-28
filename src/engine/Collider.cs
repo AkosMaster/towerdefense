@@ -73,6 +73,26 @@ public class Collider : IDrawable
         r1_center.Y + r1.scale.Y / 2 > r2_center.Y - r2.scale.Y / 2 &&
         r1_center.Y - r1.scale.Y / 2 < r2_center.Y + r2.scale.Y / 2;
     }
+
+    bool intersects_Circ_Rect(CCircle circle, CRectangle rect, Transform other_transform) {
+
+        Vector2 circle_center = circle.center + transform.getPosition();
+        Vector2 rect_center = rect.center + other_transform.getPosition();
+
+        float circleDistance_x = Math.Abs(circle_center.X - rect_center.X);
+        float circleDistance_y = Math.Abs(circle_center.Y - rect_center.Y);
+
+        if (circleDistance_x > (rect.scale.X/2 + circle.radius)) { return false; }
+        if (circleDistance_y > (rect.scale.Y/2 + circle.radius)) { return false; }
+
+        if (circleDistance_x <= (rect.scale.X/2)) { return true; } 
+        if (circleDistance_y <= (rect.scale.Y/2)) { return true; }
+
+        double cornerDistance_sq = Math.Pow((double)circleDistance_x - rect.scale.X/2, (double)2) +
+                         Math.Pow((double)circleDistance_y - rect.scale.Y/2, (double)2);
+
+        return (cornerDistance_sq <= (circle.radius*circle.radius));
+    }
     public bool doesIntersect(Collider other) {
         foreach (CShape shape in shapes) {
             foreach(CShape other_shape in other.shapes) {
@@ -85,14 +105,17 @@ public class Collider : IDrawable
                         }
                     } 
                     else {
-                        // NO
-
+                        if (intersects_Circ_Rect((CCircle) shape, (CRectangle)other_shape, other.transform)) {
+                            return true;
+                        }
                     }
                 } 
 
                 else {
                     if (other_shape.GetType() == typeof(CCircle)) {
-                        // NO
+                        if (intersects_Circ_Rect((CCircle) other_shape, (CRectangle)shape, other.transform)) {
+                            return true;
+                        }
                     } else {
                         if (intersects_Rect_Rect((CRectangle)shape, (CRectangle)other_shape, other.transform)) {
                             return true;

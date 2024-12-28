@@ -25,7 +25,7 @@ public class Sprite : IDrawable
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch) { 
-        spriteBatch.Draw(spriteTexture, transform.getPosition() - new Vector2(spriteTexture.Width, spriteTexture.Height)/2, null,
+        spriteBatch.Draw(spriteTexture, transform.getPosition() - new Vector2(spriteTexture.Width, spriteTexture.Height)*transform.getScale()/2, null,
         Color.White, 0f, Vector2.Zero, transform.getScale(), SpriteEffects.None, 0f);
     }
 }
