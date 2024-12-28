@@ -24,9 +24,11 @@ public class Lane : IActor
 
     float elapsed = 0;
     float spawnInterval = 2000;
+
     public void Update(GameTime gameTime) {
         elapsed += gameTime.ElapsedGameTime.Milliseconds;
 
+        //spawn enemy
         if (elapsed > spawnInterval) {
             elapsed -= spawnInterval;
             Enemy enemy = new Enemy(this);

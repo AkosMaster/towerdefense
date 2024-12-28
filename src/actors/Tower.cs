@@ -10,7 +10,7 @@ public class Tower : GameObject
 
     public Tower() : base("tower") {
         setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("tower1")));
-        transform.localScale = new Vector2(0.5f,0.5f);
+        sprite.transform.localScale = new Vector2(0.5f,0.5f);
     }
     
     float elapsed = 0;

@@ -10,6 +10,13 @@ public class Player : GameObject
         setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("archer")));
     }
 
+    public Vector2 facing;
+
+    void useHammer() {
+
+    }
+
+
     public override void Update(GameTime gameTime) {
         KeyboardState keyState = Keyboard.GetState();
         Vector2 move = Vector2.Zero;
@@ -24,6 +31,15 @@ public class Player : GameObject
             move += new Vector2(-speed*elapsed, 0);
         if (keyState.IsKeyDown(Keys.D))
             move += new Vector2(speed*elapsed, 0);
+        
+        if (keyState.IsKeyDown(Keys.E))
+            useHammer();
+        
+        // if moving, update facing
+        if (move.LengthSquared() > float.Epsilon) {
+            facing = move;
+            move.Normalize();
+        }
 
         transform.localPosition += move;
     }
