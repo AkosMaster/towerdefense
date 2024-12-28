@@ -7,6 +7,7 @@ namespace towerdefense;
 
 public class Lane : IActor
 {
+    public Transform transform = new Transform();
     private List<Vector2> points;
 
     public Lane(List<Vector2> _points) {
@@ -18,7 +19,7 @@ public class Lane : IActor
         return points.Count;
     }
     public Vector2 getPoint(int index) {
-        return points[index];
+        return points[index] + transform.getPosition();
     }
 
     float elapsed = 0;

@@ -30,7 +30,7 @@ public class Projectile : GameObject
         }
 
         foreach(GameObject enemy in GameObject.getGameObjectsByTag("enemy")) {
-            if (enemy.collider.isPointInside(transform.getPosition())) {
+            if (enemy.collider.isPointInsideRectangle(transform.getPosition())) {
                 enemy.Delete();
                 this.Delete();
                 return;
