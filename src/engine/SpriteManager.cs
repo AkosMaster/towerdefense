@@ -7,10 +7,10 @@ namespace towerdefense;
 public class SpriteManager {
 
     private readonly List<IDrawable> gameSprites = new List<IDrawable>();
-    public void registerSprite(IDrawable sprite) {
+    public void RegisterSprite(IDrawable sprite) {
         gameSprites.Add(sprite);
     }
-    public void unregisterSprite(IDrawable sprite) {
+    public void UnRegisterSprite(IDrawable sprite) {
         gameSprites.Remove(sprite);
     }
 

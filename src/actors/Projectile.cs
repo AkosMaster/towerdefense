@@ -25,7 +25,7 @@ public class Projectile : GameObject
     } 
     public override void Update(GameTime gameTime) {
         if (targetMode) {
-            Vector2 directionVector = target.transform.getPosition() - transform.getPosition();
+            Vector2 directionVector = target.transform.GetPosition() - transform.GetPosition();
             directionVector.Normalize();
             transform.localPosition += directionVector * speed * gameTime.ElapsedGameTime.Milliseconds;
         } else {
@@ -33,7 +33,7 @@ public class Projectile : GameObject
         }
 
         foreach(GameObject enemy in GameObject.getGameObjectsByTag("enemy")) {
-            if (enemy.collider.doesIntersect(collider)) {
+            if (enemy.collider.CheckIntersection(collider)) {
                 enemy.Delete();
                 this.Delete();
                 return;

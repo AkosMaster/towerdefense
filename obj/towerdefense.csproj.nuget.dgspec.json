@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\akosd\\OneDrive\\Desktop\\TowerDefense\\towerdefense.csproj": {}
+    "C:\\Users\\andri\\Programming\\C#\\Tower Defense Game\\towerdefense\\towerdefense.csproj": {}
   },
   "projects": {
-    "c:\\Users\\akosd\\OneDrive\\Desktop\\TowerDefense\\towerdefense.csproj": {
+    "C:\\Users\\andri\\Programming\\C#\\Tower Defense Game\\towerdefense\\towerdefense.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\akosd\\OneDrive\\Desktop\\TowerDefense\\towerdefense.csproj",
+        "projectUniqueName": "C:\\Users\\andri\\Programming\\C#\\Tower Defense Game\\towerdefense\\towerdefense.csproj",
         "projectName": "towerdefense",
-        "projectPath": "c:\\Users\\akosd\\OneDrive\\Desktop\\TowerDefense\\towerdefense.csproj",
-        "packagesPath": "C:\\Users\\akosd\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\akosd\\OneDrive\\Desktop\\TowerDefense\\obj\\",
+        "projectPath": "C:\\Users\\andri\\Programming\\C#\\Tower Defense Game\\towerdefense\\towerdefense.csproj",
+        "packagesPath": "C:\\Users\\andri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\andri\\Programming\\C#\\Tower Defense Game\\towerdefense\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\akosd\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\andri\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -37,7 +37,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -63,12 +64,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

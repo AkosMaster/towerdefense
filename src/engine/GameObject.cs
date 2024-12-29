@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public abstract class GameObject : IActor
+public abstract class GameObject : IUpdateable
 {
 
     public Sprite sprite;
@@ -14,7 +14,7 @@ public abstract class GameObject : IActor
     string tag;
     public GameObject(string _tag){
         tag = _tag;
-        ActorManager.actorManager.registerActor(this);
+        UpdateManager.actorManager.registerActor(this);
         collider.transform.parent = transform;
 
         if(!gameObjectsByTag.ContainsKey(tag)) {
@@ -24,7 +24,7 @@ public abstract class GameObject : IActor
     }
 
     public void Delete() {
-        ActorManager.actorManager.unregisterActor(this);
+        UpdateManager.actorManager.unregisterActor(this);
         sprite.Delete();
         gameObjectsByTag[tag].Remove(this);
     }

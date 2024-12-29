@@ -26,7 +26,7 @@ public class Enemy : GameObject
 
     public override void Update(GameTime gameTime) {
         //check if reached end of line segment
-        if ((currentPoint - transform.getPosition()).LengthSquared() <= 10) {
+        if ((currentPoint - transform.GetPosition()).LengthSquared() <= 10) {
             reachedGoal = true;
         }
 
@@ -41,7 +41,7 @@ public class Enemy : GameObject
         }
 
         //face and move toward to end of next path segment
-        Vector2 directionVector = currentPoint - transform.getPosition();
+        Vector2 directionVector = currentPoint - transform.GetPosition();
         directionVector.Normalize();
         transform.localPosition += directionVector * speed * gameTime.ElapsedGameTime.Milliseconds;
 

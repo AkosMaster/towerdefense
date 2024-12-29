@@ -11,6 +11,7 @@ namespace towerdefense;
 public abstract class CShape {
 
 }
+
 public class CCircle : CShape {
     public Vector2 center;
     public float radius;
@@ -56,17 +57,17 @@ public class Collider : IDrawable
         
     }
 
-    bool intersects_Circle_Circle(CCircle c1, CCircle c2, Transform other_transform) {
-        Vector2 c1_center = c1.center + transform.getPosition();
-        Vector2 c2_center = c2.center + other_transform.getPosition();
+    static bool CheckCircleCircle(CCircle c1, Transform t1, CCircle c2, Transform t2) {
+        Vector2 c1_center = c1.center + t1.GetPosition();
+        Vector2 c2_center = c2.center + t2.GetPosition();
 
         float distance = (c1_center - c2_center).Length();
         return distance <= c1.radius + c2.radius;
     }
 
-    bool intersects_Rect_Rect(CRectangle r1, CRectangle r2, Transform other_transform) {
-        Vector2 r1_center = r1.center + transform.getPosition();
-        Vector2 r2_center = r2.center + other_transform.getPosition();
+    static bool CheckRectRect(CRectangle r1, Transform t1, CRectangle r2, Transform t2) {
+        Vector2 r1_center = r1.center + t1.GetPosition();
+        Vector2 r2_center = r2.center + t2.GetPosition();
 
         return r1_center.X + r1.scale.X / 2 > r2_center.X - r2.scale.X / 2 &&
         r1_center.X - r1.scale.X / 2 < r2_center.X + r2.scale.X / 2 &&
@@ -74,10 +75,10 @@ public class Collider : IDrawable
         r1_center.Y - r1.scale.Y / 2 < r2_center.Y + r2.scale.Y / 2;
     }
 
-    bool intersects_Circ_Rect(CCircle circle, CRectangle rect, Transform other_transform) {
+    static bool CheckCircleRect(CCircle circle, Transform t1, CRectangle rect, Transform t2) {
 
-        Vector2 circle_center = circle.center + transform.getPosition();
-        Vector2 rect_center = rect.center + other_transform.getPosition();
+        Vector2 circle_center = circle.center + t1.GetPosition();
+        Vector2 rect_center = rect.center + t2.GetPosition();
 
         float circleDistance_x = Math.Abs(circle_center.X - rect_center.X);
         float circleDistance_y = Math.Abs(circle_center.Y - rect_center.Y);
@@ -93,35 +94,31 @@ public class Collider : IDrawable
 
         return (cornerDistance_sq <= (circle.radius*circle.radius));
     }
-    public bool doesIntersect(Collider other) {
-        foreach (CShape shape in shapes) {
-            foreach(CShape other_shape in other.shapes) {
 
-                if (shape.GetType() == typeof(CCircle)) {
-                    if (other_shape.GetType() == typeof(CCircle)) {
-                        if (intersects_Circle_Circle((CCircle)shape, (CCircle)other_shape, other.transform)) {
-                            //Debug.Print(((CCircle)shape).center.X);
-                            return true;
-                        }
-                    } 
-                    else {
-                        if (intersects_Circ_Rect((CCircle) shape, (CRectangle)other_shape, other.transform)) {
-                            return true;
-                        }
-                    }
-                } 
+    //checks collision between any types of colliders
+    static bool CheckColliders(CShape c1, Transform t1, CShape c2, Transform t2)
+    {
+        if (c1.GetType() == typeof(CCircle) && c2.GetType() == typeof(CCircle))
+            return CheckCircleCircle((CCircle)c1, t1, (CCircle)c2, t2);
+            
+        if (c1.GetType() == typeof(CCircle) && c2.GetType() == typeof(CRectangle))
+            return CheckCircleRect((CCircle)c1, t1, (CRectangle)c2, t2);  
+        
+        if (c1.GetType() == typeof(CRectangle) && c2.GetType() == typeof(CCircle))
+            return CheckCircleRect((CCircle)c2, t2, (CRectangle)c1, t1);
+        
+        if (c1.GetType() == typeof(CRectangle) && c2.GetType() == typeof(CRectangle))
+            return CheckRectRect((CRectangle)c1, t1, (CRectangle)c2, t2);
+        
+        return false;
+    }
 
-                else {
-                    if (other_shape.GetType() == typeof(CCircle)) {
-                        if (intersects_Circ_Rect((CCircle) other_shape, (CRectangle)shape, other.transform)) {
-                            return true;
-                        }
-                    } else {
-                        if (intersects_Rect_Rect((CRectangle)shape, (CRectangle)other_shape, other.transform)) {
-                            return true;
-                        }
-                    }
-                }
+    public bool CheckIntersection(Collider other) {
+        foreach (CShape shape in shapes) 
+        {
+            foreach(CShape otherShape in other.shapes)
+            {
+                return CheckColliders(shape, transform, otherShape, other.transform);
             }
         }
         return false;
