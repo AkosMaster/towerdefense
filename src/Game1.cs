@@ -46,14 +46,26 @@ public class Game1 : Game
         //Sprite bg = new Sprite(contentManager.Load<Texture2D>("bg1"));
         //bg.transform.localScale = new Vector2(2,2);
 
-        player = new Player();
         InitializeMap();
     }
 
-    static void InitializeMap()
+    protected void InitializeMap()
     {
-        Lane lane1 = new Lane(new List<Vector2> { new Vector2(400, 400), new Vector2(500, 600), new Vector2(1000, 600) });
+        Sprite pathSprite = new Sprite(contentManager.Load<Texture2D>("path1"));
+        pathSprite.transform.localPosition = new Vector2(900,500);
+        pathSprite.layer = 1;
+        pathSprite.color = Color.White * 0.8f;
+
+        player = new Player();
+
+        Lane lane1 = new Lane(new List<Vector2> { new Vector2(72, 333), new Vector2(657, 465), new Vector2(895, 218),
+            new Vector2(1396, 321), new Vector2(1557, 573), new Vector2(1711, 811) });
+
+        Lane lane2 = new Lane(new List<Vector2> { new Vector2(72, 333), new Vector2(657, 465), new Vector2(763, 676),
+            new Vector2(1264, 753), new Vector2(1557, 573), new Vector2(1711, 811) }, 1000);
+        
         UpdateManager.actorManager.registerActor(lane1);
+        UpdateManager.actorManager.registerActor(lane2);
 
         Tower t1 = new SimpleShroom();
         t1.transform.localPosition = new Vector2(500, 200);
@@ -71,6 +83,15 @@ public class Game1 : Game
         i2.transform.localPosition = new Vector2(600,200);
     }
 
+    Vector2 GetVirtualMousePosition() { // get mouse position using game units
+        if (gameRect.Width == 0 || gameRect.Height == 0) {
+            return Vector2.Zero;
+        }
+        MouseState mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
+        Vector2 vMouse = new Vector2(mouseState.X, mouseState.Y) - new Vector2(gameRect.X, gameRect.Y);
+        vMouse *= new Vector2((float)virtualWidth/(float)gameRect.Width,(float)virtualHeight/(float)gameRect.Height );
+        return vMouse;
+    }
     protected override void Update(GameTime gameTime)
     {
         CheckExitInput();
@@ -79,7 +100,9 @@ public class Game1 : Game
 
         base.Update(gameTime);
 
-        Debug.Print("[actor count]: " + UpdateManager.actorManager.getActors().Count.ToString()
+        Vector2 vMouse = GetVirtualMousePosition();
+        Debug.Print("MouseX: " + vMouse.X.ToString() + " MouseY: " + vMouse.Y.ToString()
+            + " [actor count]: " + UpdateManager.actorManager.getActors().Count.ToString()
             + " [sprite count]: " + SpriteManager.spriteManager.getSprites().Count.ToString());
     }
 
@@ -88,13 +111,14 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
     }
+    Rectangle gameRect; // game rectangle inside window. Has fixed aspect ratio
 
     protected override void Draw(GameTime gameTime)
     {   
         GraphicsDevice.SetRenderTarget(renderTarget);
 
         // normal draw calls
-        GraphicsDevice.Clear(Color.LawnGreen);
+        GraphicsDevice.Clear(Color.DarkGreen);
 
         // draw game sprites
         SpriteManager.spriteManager.Draw(gameTime, targetBatch);
@@ -106,7 +130,6 @@ public class Game1 : Game
         targetBatch.Begin();
 
         // calculate the size of the actual game rectangle so that aspect ratio is kept (simple coordinate math)
-        Rectangle gameRect;
         float virtualAspectRatio = (float)virtualHeight / (float)virtualWidth;
         if (Window.ClientBounds.Width * virtualAspectRatio <= Window.ClientBounds.Height)
          {

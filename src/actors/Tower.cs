@@ -16,8 +16,9 @@ public class Tower : GameObject
         transform.localScale = new Vector2(0.1f,0.1f);
     }
     
-    float elapsed = 0;
-    float shotInterval = 100;
+    protected float elapsed = 0;
+    protected float shotInterval = 500;
+    protected float range = 300;
 
     public override void Update(GameTime gameTime)
     {
@@ -78,13 +79,19 @@ public class Tower : GameObject
         }
     }
 
-    void Shoot(GameTime gameTime) {
-        if (elapsed > shotInterval) 
-        {
-            elapsed -= shotInterval;
-            double rotation = gameTime.TotalGameTime.TotalMilliseconds/1000f;
-            Projectile proj = new Projectile(new Vector2((float)Math.Sin(rotation),(float)Math.Cos(rotation)));
-            proj.transform.localPosition = transform.localPosition;
+    protected Enemy GetNearestEnemyInRange() {
+        Enemy closestEnemy = null;
+        float smallestDistance = 999999999;
+        foreach (Enemy enemy in GameObject.GetGameObjectsByTag("enemy")) {
+            float distance = (enemy.transform.GetPosition() - transform.GetPosition()).Length();
+            if (distance <= range && distance < smallestDistance) {
+                closestEnemy = enemy;
+                smallestDistance = distance;
+            }
         }
+        return closestEnemy;
+    }
+    protected virtual void Shoot(GameTime gameTime) {
+        
     }
 }

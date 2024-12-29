@@ -9,11 +9,11 @@ public class Projectile : GameObject
 {
     static Texture2D texture = Game1.contentManager.Load<Texture2D>("bullet1");
     bool targetMode = false;
-    public float speed = 0.1f;
-    GameObject target;
+    public float speed = 0.3f;
+    Enemy target;
     Vector2 direction;
 
-    public Projectile(GameObject _target) : base("projectile"){
+    public Projectile(Enemy _target) : base("projectile"){
         target = _target;
         SetSprite(new Sprite(texture));
         targetMode = true;
@@ -34,6 +34,11 @@ public class Projectile : GameObject
         sprite.transform.localScale.Y = 1 + (float)Math.Cos((double)gameTime.TotalGameTime.TotalMilliseconds/100)/20;
         if (targetMode)
         {
+
+            if(!target.alive) {
+                this.Delete();
+            }
+
             Vector2 directionVector = target.transform.GetPosition() - transform.GetPosition();
             directionVector.Normalize();
             transform.localPosition += directionVector * speed * gameTime.ElapsedGameTime.Milliseconds;

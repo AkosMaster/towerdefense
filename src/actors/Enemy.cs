@@ -12,6 +12,7 @@ public class Enemy : GameObject
     //static Texture2D texture = Game1.contentManager.Load<Texture2D>("placeholder");
     private Lane lane;
     public int health = 100;
+    public bool alive = true;
     public Enemy(Lane _lane, Texture2D texture) : base("enemy"){
         lane = _lane;
         SetSprite(new Sprite(texture));
@@ -51,6 +52,7 @@ public class Enemy : GameObject
 
      bool CheckAlive(GameTime gameTime) {
         if (health <= 0) {
+            alive = false;
             if (timeSinceDeath > 500) {
                 OnDeath();
                 this.Delete();
@@ -78,11 +80,6 @@ public class Enemy : GameObject
 
     void FollowPath(GameTime gameTime)
     {
-        //check if reached end of line segment
-        if ((currentPoint - transform.GetPosition()).LengthSquared() <= 10)
-        {
-            reachedGoal = true;
-        }
 
         //switch to next path segment if reached end
         if (reachedGoal)
@@ -93,6 +90,13 @@ public class Enemy : GameObject
                 currentPoint = lane.getPoint(currentPointIndex);
                 reachedGoal = false;
             }
+        }
+
+        //check if reached end of line segment
+        if ((currentPoint - transform.GetPosition()).LengthSquared() <= 10)
+        {
+            reachedGoal = true;
+            return; // it works this way. Dont question it
         }
 
         //face and move toward to end of next path segment

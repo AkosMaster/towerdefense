@@ -11,9 +11,9 @@ public class Lane : IUpdateable
     public Transform transform = new Transform();
     private List<Vector2> points;
 
-    public Lane(List<Vector2> _points) {
+    public Lane(List<Vector2> _points, float delay = 0) {
         points = _points;
-
+        elapsed = -delay;
     }
 
     public int getPointCount() {
@@ -24,7 +24,7 @@ public class Lane : IUpdateable
     }
 
     float elapsed = 0;
-    float spawnInterval = 500;
+    float spawnInterval = 2000;
 
     public void Update(GameTime gameTime)
     {
@@ -36,15 +36,16 @@ public class Lane : IUpdateable
         elapsed += gameTime.ElapsedGameTime.Milliseconds;
 
         //spawn enemy
-        if (elapsed > spawnInterval)
+        if (elapsed > spawnInterval && getPointCount() > 0)
         {
             elapsed -= spawnInterval;
-
+            Enemy enemy;
             if (Game1.random.Next(1,100) < 5) {
-                GiAnt enemy = new GiAnt(this);
+                enemy = new GiAnt(this);
             } else {
-                BasicAnt enemy = new BasicAnt(this);
+                enemy = new BasicAnt(this);
             }
+            enemy.transform.localPosition = getPoint(0);
         }
     }
 }
