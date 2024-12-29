@@ -24,7 +24,7 @@ public class ItemSpawner : GameObject
 
             double rotation = gameTime.TotalGameTime.TotalMilliseconds/1000f + GetHashCode();
 
-            Item item = new Item();
+            Item item = new TestItem();
             item.transform.localPosition = transform.GetPosition() 
                 + new Vector2((float)Math.Sin(rotation),(float)Math.Cos(rotation)) * 60;
         }

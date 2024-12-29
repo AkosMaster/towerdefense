@@ -8,14 +8,14 @@ namespace towerdefense;
 
 public class Item : GameObject
 {
-
-    static Texture2D texture = Game1.contentManager.Load<Texture2D>("placeholder");
-    Vector2 defaultScale = new Vector2(3, 3);
+    protected Vector2 defaultScale = new Vector2(3, 3);
     
-    public Item() : base("item"){
+    public Item(Texture2D texture) : base("item")
+    {
         SetSprite(new Sprite(texture));
         transform.localScale = defaultScale;
     }
+    
     public Player carryingPlayer = null;
     public override void Update(GameTime gameTime)
     {

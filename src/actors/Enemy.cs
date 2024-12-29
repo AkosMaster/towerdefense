@@ -21,14 +21,14 @@ public class Enemy : GameObject
         //collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     }
 
-    private int currentPointIndex = -1;
-    private Vector2 currentPoint;
-    private bool reachedGoal = true;
+    int currentPointIndex = -1;
+    Vector2 currentPoint;
+    bool reachedGoal = true;
 
-    private float timeSinceDamaged = 99999f;
-    private float timeSinceDeath = 0;
+    float timeSinceDamaged = 99999f;
+    float timeSinceDeath = 0;
 
-    private float speed = 0.05f;
+    float speed = 0.05f;
 
     public override void Update(GameTime gameTime)
     {
@@ -45,7 +45,7 @@ public class Enemy : GameObject
         timeSinceDamaged += gameTime.ElapsedGameTime.Milliseconds;
     }
 
-    private bool CheckAlive(GameTime gameTime) {
+     bool CheckAlive(GameTime gameTime) {
         if (health <= 0) {
             if (timeSinceDeath > 500) {
                 this.Delete();
@@ -60,7 +60,7 @@ public class Enemy : GameObject
         }
     }
 
-    private bool DamageAnimation(GameTime gameTime) {
+    bool DamageAnimation(GameTime gameTime) {
         if (timeSinceDamaged < 200) {
             sprite.color = Color.Red;
             sprite.transform.localScale = new Vector2(timeSinceDamaged/200, 1f);
@@ -71,7 +71,7 @@ public class Enemy : GameObject
         }
     }
 
-    private void FollowPath(GameTime gameTime)
+    void FollowPath(GameTime gameTime)
     {
         //check if reached end of line segment
         if ((currentPoint - transform.GetPosition()).LengthSquared() <= 10)
@@ -96,7 +96,7 @@ public class Enemy : GameObject
         transform.localPosition += directionVector * speed * gameTime.ElapsedGameTime.Milliseconds;
     }
 
-    private void WalkAnimation(GameTime gameTime)
+    void WalkAnimation(GameTime gameTime)
     {
         sprite.transform.localScale.X = 1 + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds / 700f + this.GetHashCode()) / 50;
     }
