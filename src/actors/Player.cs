@@ -60,7 +60,7 @@ public class Player : GameObject
     void PickupItem() { // pickup nearest item
         Item nearestItem = null;
         float nearestDistance = 99999f;
-        foreach (Item item in GameObject.getGameObjectsByTag("item")) {
+        foreach (Item item in GameObject.GetGameObjectsByTag("item")) {
             float distance = (item.transform.GetPosition() - transform.GetPosition()).Length();
             if (distance < 30 && distance < nearestDistance) {
                 nearestDistance = distance;
@@ -77,7 +77,7 @@ public class Player : GameObject
     void UseHammer() {
 
         // whack enemies
-        foreach (Enemy enemy in GameObject.getGameObjectsByTag("enemy")) {
+        foreach (Enemy enemy in GameObject.GetGameObjectsByTag("enemy")) {
             if (enemy.collider.CheckIntersection(hammerCollider)) {
                 enemy.Damage(100);
             }

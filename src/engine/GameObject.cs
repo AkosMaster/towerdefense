@@ -38,7 +38,7 @@ public abstract class GameObject : IUpdateable
     public abstract void Update(GameTime gameTime);
 
     private static Dictionary<string, List<GameObject>> gameObjectsByTag = new Dictionary<string, List<GameObject>>();
-    public static List<GameObject> getGameObjectsByTag(string tag) {
+    public static List<GameObject> GetGameObjectsByTag(string tag) {
         if (!gameObjectsByTag.ContainsKey(tag)) {
             return new List<GameObject>();
         }
