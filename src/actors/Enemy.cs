@@ -9,10 +9,10 @@ namespace towerdefense;
 public class Enemy : GameObject
 {
 
-    static Texture2D texture = Game1.contentManager.Load<Texture2D>("basic_ant");
+    //static Texture2D texture = Game1.contentManager.Load<Texture2D>("placeholder");
     private Lane lane;
     public int health = 100;
-    public Enemy(Lane _lane) : base("enemy"){
+    public Enemy(Lane _lane, Texture2D texture) : base("enemy"){
         lane = _lane;
         SetSprite(new Sprite(texture));
 
