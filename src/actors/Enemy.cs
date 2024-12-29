@@ -17,7 +17,7 @@ public class Enemy : GameObject
         SetSprite(new Sprite(texture));
 
         collider.shapes.Add(new CRectangle(new Vector2(0,0), new Vector2(150/4,250/4)));
-        sprite.transform.localScale = new Vector2(0.3f, 0.3f);
+        transform.localScale = new Vector2(0.3f, 0.3f);
         //collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     }
 
@@ -52,7 +52,7 @@ public class Enemy : GameObject
             } else {
                 timeSinceDeath += gameTime.ElapsedGameTime.Milliseconds;
                 sprite.color = Color.MediumVioletRed;
-                sprite.transform.localScale = new Vector2(0.3f, 0.3f * (500-timeSinceDeath)/500 );
+                sprite.transform.localScale = new Vector2(1f, (500-timeSinceDeath)/500 );
             }
             return false;
         } else {
@@ -63,7 +63,7 @@ public class Enemy : GameObject
     private bool DamageAnimation(GameTime gameTime) {
         if (timeSinceDamaged < 200) {
             sprite.color = Color.Red;
-            sprite.transform.localScale = new Vector2(0.3f * timeSinceDamaged/200, 0.3f);
+            sprite.transform.localScale = new Vector2(timeSinceDamaged/200, 1f);
             return true;
         } else {
             sprite.color = Color.White;
@@ -98,7 +98,7 @@ public class Enemy : GameObject
 
     private void WalkAnimation(GameTime gameTime)
     {
-        sprite.transform.localScale.X = 0.3f + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds / 700f + this.GetHashCode()) / 50;
+        sprite.transform.localScale.X = 1 + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds / 700f + this.GetHashCode()) / 50;
     }
 
     public void Damage(int value) {

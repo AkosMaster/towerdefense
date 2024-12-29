@@ -10,7 +10,7 @@ public class Tower : GameObject
     static Texture2D texture = Game1.contentManager.Load<Texture2D>("basic_mushroom");
     public Tower() : base("tower") {
         SetSprite(new Sprite(texture));
-        sprite.transform.localScale = new Vector2(0.2f,0.2f);
+        transform.localScale = new Vector2(0.1f,0.1f);
     }
     
     float elapsed = 0;
@@ -25,6 +25,6 @@ public class Tower : GameObject
             proj.transform.localPosition = transform.localPosition;
         }
 
-        sprite.transform.localScale.Y = 0.2f + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds/700f)/50;
+        sprite.transform.localScale.Y = 1f + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds/700f)/50;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -29,6 +30,8 @@ public class Projectile : GameObject
 
     public override void Update(GameTime gameTime)
     {
+        sprite.transform.localScale.X = 1 + (float)Math.Sin((double)gameTime.TotalGameTime.TotalMilliseconds/100)/20;
+        sprite.transform.localScale.Y = 1 + (float)Math.Cos((double)gameTime.TotalGameTime.TotalMilliseconds/100)/20;
         if (targetMode)
         {
             Vector2 directionVector = target.transform.GetPosition() - transform.GetPosition();

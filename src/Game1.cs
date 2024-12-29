@@ -61,6 +61,9 @@ public class Game1 : Game
 
         Tower t3 = new Tower();
         t3.transform.localPosition = new Vector2(1000, 600);
+
+        Item i1 = new Item();
+        i1.transform.localPosition = new Vector2(300,600);
     }
 
     protected override void Update(GameTime gameTime)
