@@ -10,6 +10,7 @@ public class Enemy : GameObject
 {
 
     private Lane lane;
+    public int health = 100;
     public Enemy(Lane _lane) : base("enemy"){
         lane = _lane;
         SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("basic_ant")));
@@ -23,12 +24,50 @@ public class Enemy : GameObject
     private Vector2 currentPoint;
     private bool reachedGoal = true;
 
+    private float timeSinceDamaged = 99999f;
+    private float timeSinceDeath = 0;
+
     private float speed = 0.05f;
 
     public override void Update(GameTime gameTime)
     {
-        FollowPath(gameTime);
-        WalkAnimation(gameTime);
+        // for a multitude of reasons, it is better to die in our own Update loop (for example animation)
+        if (!CheckAlive(gameTime)) {
+            return;
+        }
+
+        if (!DamageAnimation(gameTime)) {
+            FollowPath(gameTime);
+            WalkAnimation(gameTime);
+        }
+
+        timeSinceDamaged += gameTime.ElapsedGameTime.Milliseconds;
+    }
+
+    private bool CheckAlive(GameTime gameTime) {
+        if (health <= 0) {
+            if (timeSinceDeath > 500) {
+                this.Delete();
+            } else {
+                timeSinceDeath += gameTime.ElapsedGameTime.Milliseconds;
+                sprite.color = Color.MediumVioletRed;
+                sprite.transform.localScale = new Vector2(0.3f, 0.3f * (500-timeSinceDeath)/500 );
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private bool DamageAnimation(GameTime gameTime) {
+        if (timeSinceDamaged < 200) {
+            sprite.color = Color.Red;
+            sprite.transform.localScale = new Vector2(0.3f * timeSinceDamaged/200, 0.3f);
+            return true;
+        } else {
+            sprite.color = Color.White;
+            return false;
+        }
     }
 
     private void FollowPath(GameTime gameTime)
@@ -59,5 +98,10 @@ public class Enemy : GameObject
     private void WalkAnimation(GameTime gameTime)
     {
         sprite.transform.localScale.X = 0.3f + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds / 700f + this.GetHashCode()) / 50;
+    }
+
+    public void Damage(int value) {
+        timeSinceDamaged = 0;
+        health -= value;
     }
 }
