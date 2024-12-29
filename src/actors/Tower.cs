@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,6 +26,27 @@ public class Tower : GameObject
             proj.transform.localPosition = transform.localPosition;
         }
     }
+
+    private void CollectItems() {
+        List<Item> itemsToDelete = new List<Item>();
+        foreach(Item item in GameObject.getGameObjectsByTag("item")) {
+            // later here we would check item type
+
+            float distance = (item.transform.GetPosition() - transform.GetPosition()).Length();
+
+            if (distance < 30 && item.carryingPlayer == null) {
+                itemsToDelete.Add(item);
+
+                // this can be done after multiple correct-type items are fed of course
+                isBluePrint = false;
+            }
+        }
+
+        // we cant do this in the loop above since we cant iterate a list whilst modifying it
+        foreach(Item item in itemsToDelete) {
+            item.Delete();
+        }
+    }
     public override void Update(GameTime gameTime) {
         
 
@@ -32,6 +54,7 @@ public class Tower : GameObject
 
         if (isBluePrint) {
             sprite.color = Color.Aqua * 0.5f;
+            CollectItems();
         } else {
             sprite.color = Color.White;
             Shoot(gameTime);
