@@ -42,7 +42,7 @@ public class Player : GameObject
     {
         KeyboardState keyState = Keyboard.GetState();
 
-        Vector2 moveInput = Vector2.Zero;
+        moveInput = Vector2.Zero;
 
         if (keyState.IsKeyDown(Keys.W))
             moveInput += new Vector2(0, -1);
