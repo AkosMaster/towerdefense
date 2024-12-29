@@ -9,10 +9,10 @@ namespace towerdefense;
 public class ItemSpawner : GameObject
 {
     
-    static Texture2D texture = Game1.contentManager.Load<Texture2D>("placeholder");
+    static Texture2D texture = Game1.contentManager.Load<Texture2D>("bush_1");
     public ItemSpawner() : base("itemspawner") {
         SetSprite(new Sprite(texture));
-        transform.localScale = new Vector2(5f,5f);
+        transform.localScale = new Vector2(0.5f,0.5f);
     }
     
     float elapsed = 0;
@@ -36,5 +36,6 @@ public class ItemSpawner : GameObject
         
         Spawn(gameTime);
         sprite.transform.localScale.Y = 1f + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds/700f)/50;
+        sprite.transform.localScale.X = 1f + (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds/500f)/30;
     }
 }
