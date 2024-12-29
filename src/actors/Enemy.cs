@@ -9,11 +9,12 @@ namespace towerdefense;
 public class Enemy : GameObject
 {
 
+    static Texture2D texture = Game1.contentManager.Load<Texture2D>("basic_ant");
     private Lane lane;
     public int health = 100;
     public Enemy(Lane _lane) : base("enemy"){
         lane = _lane;
-        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("basic_ant")));
+        SetSprite(new Sprite(texture));
 
         collider.shapes.Add(new CRectangle(new Vector2(0,0), new Vector2(150/4,250/4)));
         sprite.transform.localScale = new Vector2(0.3f, 0.3f);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Mime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -31,8 +32,8 @@ public class Game1 : Game
     private SpriteBatch targetBatch;
     private RenderTarget2D renderTarget;
 
-    int virtualWidth = 1920; // relative width of game
-    int virtualHeight = 1080; // relative height of game
+    public static int virtualWidth = 1920; // relative width of game
+    public static int virtualHeight = 1080; // relative height of game
     protected override void LoadContent()
     {
         contentManager = Content;
@@ -70,6 +71,9 @@ public class Game1 : Game
         UpdateManager.actorManager.Update(gameTime);
 
         base.Update(gameTime);
+
+        Debug.Print("[actor count]: " + UpdateManager.actorManager.getActors().Count.ToString() 
+            + " [sprite count]: " + SpriteManager.spriteManager.getSprites().Count.ToString());
     }
 
     protected override void Draw(GameTime gameTime)

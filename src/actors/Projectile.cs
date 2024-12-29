@@ -6,6 +6,7 @@ namespace towerdefense;
 
 public class Projectile : GameObject
 {
+    static Texture2D texture = Game1.contentManager.Load<Texture2D>("bullet1");
     bool targetMode = false;
     public float speed = 0.1f;
     GameObject target;
@@ -13,7 +14,7 @@ public class Projectile : GameObject
 
     public Projectile(GameObject _target) : base("projectile"){
         target = _target;
-        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
+        SetSprite(new Sprite(texture));
         targetMode = true;
         collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     }
@@ -21,7 +22,7 @@ public class Projectile : GameObject
     public Projectile(Vector2 _direction) : base("projectile"){
         direction = _direction;
         direction.Normalize();
-        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
+        SetSprite(new Sprite(texture));
         
         collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     } 
@@ -40,6 +41,16 @@ public class Projectile : GameObject
         }
 
         CheckForHit();
+        CheckOutOfBounds();
+    }
+
+    private void CheckOutOfBounds() {
+        if (transform.GetPosition().X < 0 || transform.GetPosition().X > Game1.virtualWidth) {
+            this.Delete();
+        }
+        if (transform.GetPosition().Y < 0 || transform.GetPosition().Y > Game1.virtualHeight) {
+            this.Delete();
+        }
     }
 
     private void CheckForHit()

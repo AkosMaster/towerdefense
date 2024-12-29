@@ -8,6 +8,10 @@ public class SpriteManager {
 
     private readonly List<IDrawable> gameSprites = new List<IDrawable>();
 
+    public List<IDrawable> getSprites() {
+        return gameSprites;
+    }
+
     public void RegisterSprite(IDrawable sprite) {
         gameSprites.Add(sprite);
     }

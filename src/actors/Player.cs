@@ -7,9 +7,10 @@ namespace towerdefense;
 
 public class Player : GameObject
 {
+    static Texture2D texture = Game1.contentManager.Load<Texture2D>("archer");
     Collider hammerCollider = new Collider();
     public Player() : base("player") {
-        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("archer")));
+        SetSprite(new Sprite(texture));
 
         hammerCollider.shapes.Add(new CCircle(new Vector2(0,0), 15));
         hammerCollider.transform.parent = transform;

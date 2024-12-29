@@ -7,14 +7,14 @@ namespace towerdefense;
 
 public class Tower : GameObject
 {
-
+    static Texture2D texture = Game1.contentManager.Load<Texture2D>("basic_mushroom");
     public Tower() : base("tower") {
-        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("basic_mushroom")));
+        SetSprite(new Sprite(texture));
         sprite.transform.localScale = new Vector2(0.2f,0.2f);
     }
     
     float elapsed = 0;
-    float shotInterval = 500;
+    float shotInterval = 100;
     public override void Update(GameTime gameTime) {
         elapsed += gameTime.ElapsedGameTime.Milliseconds;
 

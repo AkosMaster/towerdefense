@@ -23,7 +23,7 @@ public class Lane : IUpdateable
     }
 
     float elapsed = 0;
-    float spawnInterval = 2000;
+    float spawnInterval = 500;
 
     public void Update(GameTime gameTime)
     {
