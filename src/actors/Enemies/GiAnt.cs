@@ -11,7 +11,7 @@ public class GiAnt : Enemy
 
     static Texture2D texture = Game1.contentManager.Load<Texture2D>("basic_ant");
     public GiAnt(Lane _lane) : base(_lane, texture){
-        transform.localScale = new Vector2(0.6f,0.6f);
+        transform.localScale = new Vector2(0.45f,0.45f);
         health = 300;
     }
 
