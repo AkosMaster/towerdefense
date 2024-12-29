@@ -39,23 +39,27 @@ public class Game1 : Game
         targetBatch = new SpriteBatch(GraphicsDevice);
         renderTarget = new RenderTarget2D(GraphicsDevice, virtualWidth, virtualHeight);
         // TODO: use this.Content to load your game content here
-        
+
         //Sprite bg = new Sprite(contentManager.Load<Texture2D>("bg1"));
         //bg.transform.localScale = new Vector2(2,2);
 
         player = new Player();
+        InitializeMap();
+    }
 
-        Lane lane1 = new Lane(new List<Vector2>{new Vector2(400,400), new Vector2(500, 600), new Vector2(1000,600)});
-        ActorManager.actorManager.registerActor(lane1);
+    static void InitializeMap()
+    {
+        Lane lane1 = new Lane(new List<Vector2> { new Vector2(400, 400), new Vector2(500, 600), new Vector2(1000, 600) });
+        UpdateManager.actorManager.registerActor(lane1);
 
         Tower t1 = new Tower();
-        t1.transform.localPosition = new Vector2(500,200);
+        t1.transform.localPosition = new Vector2(500, 200);
 
         Tower t2 = new Tower();
-        t2.transform.localPosition = new Vector2(200,500);
+        t2.transform.localPosition = new Vector2(200, 500);
 
         Tower t3 = new Tower();
-        t3.transform.localPosition = new Vector2(1000,600);
+        t3.transform.localPosition = new Vector2(1000, 600);
     }
 
     protected override void Update(GameTime gameTime)
@@ -63,7 +67,7 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        ActorManager.actorManager.Update(gameTime);
+        UpdateManager.actorManager.Update(gameTime);
 
         base.Update(gameTime);
     }

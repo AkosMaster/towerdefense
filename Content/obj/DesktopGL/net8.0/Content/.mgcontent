@@ -4,14 +4,14 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer_level_1.png</File>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/archer.png</File>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/basic_ant.png</File>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/basic_mushroom.png</File>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/LXCfjf.png</File>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/player1.png</File>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/UFO(1).png</File>
-    <File>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/wizard_bullet.png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/archer_level_1.png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/archer.png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/basic_ant.png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/basic_mushroom.png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/LXCfjf.png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/player1.png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/UFO(1).png</File>
+    <File>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/wizard_bullet.png</File>
   </SourceFiles>
   <DestFiles>
     <File>tower1.png</File>

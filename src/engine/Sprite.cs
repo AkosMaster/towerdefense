@@ -14,18 +14,19 @@ public class Sprite : IDrawable
     private readonly Texture2D spriteTexture;
 
     public Transform transform = new Transform();
+    
     public Sprite(Texture2D _texture) {
         spriteTexture = _texture;
 
-        SpriteManager.spriteManager.registerSprite(this);
+        SpriteManager.spriteManager.RegisterSprite(this);
     }
 
     public void Delete() {
-        SpriteManager.spriteManager.unregisterSprite(this);
+        SpriteManager.spriteManager.UnRegisterSprite(this);
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch) { 
-        spriteBatch.Draw(spriteTexture, transform.getPosition() - new Vector2(spriteTexture.Width, spriteTexture.Height)*transform.getScale()/2, null,
-        Color.White, 0f, Vector2.Zero, transform.getScale(), SpriteEffects.None, 0f);
+        spriteBatch.Draw(spriteTexture, transform.GetPosition() - new Vector2(spriteTexture.Width, spriteTexture.Height)*transform.GetScale()/2, null,
+        Color.White, 0f, Vector2.Zero, transform.GetScale(), SpriteEffects.None, 0f);
     }
 }

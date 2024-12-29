@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public class Lane : IActor
+public class Lane : IUpdateable
 {
     public Transform transform = new Transform();
     private List<Vector2> points;
@@ -19,17 +19,24 @@ public class Lane : IActor
         return points.Count;
     }
     public Vector2 getPoint(int index) {
-        return points[index] + transform.getPosition();
+        return points[index] + transform.GetPosition();
     }
 
     float elapsed = 0;
     float spawnInterval = 2000;
 
-    public void Update(GameTime gameTime) {
+    public void Update(GameTime gameTime)
+    {
+        AttemptSpawn(gameTime);
+    }
+
+    private void AttemptSpawn(GameTime gameTime)
+    {
         elapsed += gameTime.ElapsedGameTime.Milliseconds;
 
         //spawn enemy
-        if (elapsed > spawnInterval) {
+        if (elapsed > spawnInterval)
+        {
             elapsed -= spawnInterval;
             Enemy enemy = new Enemy(this);
         }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/basic_mushroom.png</SourceFile>
-  <SourceTime>2024-12-28T21:17:45.1722157+01:00</SourceTime>
-  <DestFile>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/bin/DesktopGL/Content/basic_mushroom.xnb</DestFile>
-  <DestTime>2024-12-28T21:18:52.7990934+01:00</DestTime>
+  <SourceFile>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/basic_mushroom.png</SourceFile>
+  <SourceTime>2024-12-29T03:51:38.6289988+01:00</SourceTime>
+  <DestFile>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/bin/DesktopGL/Content/basic_mushroom.xnb</DestFile>
+  <DestTime>2024-12-29T03:56:44.7819607+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T19:05:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

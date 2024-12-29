@@ -12,19 +12,21 @@ public class Transform
     
     public Transform parent = null;
 
-    public Vector2 getPosition() {
+    public Vector2 GetPosition() {
         if (parent == null) {
             return localPosition;
-        } else {
-            return localPosition + parent.getPosition();
+        } 
+        else {
+            return localPosition + parent.GetPosition();
         }
     }
 
-    public Vector2 getScale() {
+    public Vector2 GetScale() {
         if (parent == null) {
             return localScale;
-        } else {
-            return localScale * parent.getScale();
+        } 
+        else {
+            return localScale * parent.GetScale();
         }
     }
 }

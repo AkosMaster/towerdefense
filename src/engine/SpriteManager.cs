@@ -7,16 +7,19 @@ namespace towerdefense;
 public class SpriteManager {
 
     private readonly List<IDrawable> gameSprites = new List<IDrawable>();
-    public void registerSprite(IDrawable sprite) {
+
+    public void RegisterSprite(IDrawable sprite) {
         gameSprites.Add(sprite);
     }
-    public void unregisterSprite(IDrawable sprite) {
+
+    public void UnRegisterSprite(IDrawable sprite) {
         gameSprites.Remove(sprite);
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
 
         spriteBatch.Begin(samplerState: SamplerState.PointClamp); // pointClamp makes upscaled sprites look sharp
+        
         foreach (IDrawable sprite in gameSprites) {
             sprite.Draw(gameTime, spriteBatch);
         }

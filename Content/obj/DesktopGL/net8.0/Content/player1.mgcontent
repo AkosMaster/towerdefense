@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/player1.png</SourceFile>
-  <SourceTime>2024-12-08T19:44:35.8274896+01:00</SourceTime>
-  <DestFile>c:/Users/akosd/OneDrive/Desktop/TowerDefense/Content/bin/DesktopGL/Content/player1.xnb</DestFile>
-  <DestTime>2024-12-08T19:46:24.7228702+01:00</DestTime>
+  <SourceFile>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/player1.png</SourceFile>
+  <SourceTime>2024-12-29T03:51:38.6639948+01:00</SourceTime>
+  <DestFile>C:/Users/andri/Programming/C#/Tower Defense Game/towerdefense/Content/bin/DesktopGL/Content/player1.xnb</DestFile>
+  <DestTime>2024-12-29T03:56:44.8524808+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T19:05:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
