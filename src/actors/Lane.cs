@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -38,7 +39,12 @@ public class Lane : IUpdateable
         if (elapsed > spawnInterval)
         {
             elapsed -= spawnInterval;
-            Enemy enemy = new Enemy(this);
+
+            if (Game1.random.Next(1,100) < 5) {
+                GiAnt enemy = new GiAnt(this);
+            } else {
+                BasicAnt enemy = new BasicAnt(this);
+            }
         }
     }
 }

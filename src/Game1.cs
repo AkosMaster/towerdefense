@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Mime;
 using Microsoft.Xna.Framework;
@@ -14,7 +15,7 @@ public class Game1 : Game
     private Player player;
 
     public static ContentManager contentManager;
-
+    public static Random random = new Random();
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
