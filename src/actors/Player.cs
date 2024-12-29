@@ -24,6 +24,8 @@ public class Player : GameObject
     Vector2 moveInput;
     bool interactInput;
     bool hammerInput;
+    KeyboardState lastKeyState = Keyboard.GetState();
+    const float pickupRange = 30;
 
     public Vector2 facing;
 
@@ -41,28 +43,37 @@ public class Player : GameObject
         // put hammer collider in front of player.
         hammerCollider.transform.localPosition = facing * 30;
 
-        if (hammerInput) {
-            if (carriedItem == null) {
+        if (hammerInput) 
+        {
+            if (carriedItem == null) 
+            {
                 UseHammer();
             }
-        } else if (interactInput) {
-            if (carriedItem == null) {
+        } 
+        else if (interactInput) 
+        {
+            if (carriedItem == null)
+            {
                 PickupItem();
-            } else {
+            } 
+            else 
+            {
                 // drop item
                 carriedItem.Drop(transform.GetPosition() + facing * 30);
-                carriedItem = null;
-                
+                carriedItem = null;    
             }
         }
     }
 
-    void PickupItem() { // pickup nearest item
+    // pickup nearest item
+    void PickupItem() 
+    { 
         Item nearestItem = null;
         float nearestDistance = 99999f;
-        foreach (Item item in GameObject.GetGameObjectsByTag("item")) {
+        foreach (Item item in GameObject.GetGameObjectsByTag("item")) 
+        {
             float distance = (item.transform.GetPosition() - transform.GetPosition()).Length();
-            if (distance < 30 && distance < nearestDistance) {
+            if (distance < pickupRange && distance < nearestDistance) {
                 nearestDistance = distance;
                 nearestItem = item;
             }
@@ -84,7 +95,6 @@ public class Player : GameObject
         }
     }
 
-    KeyboardState lastKeyState = Keyboard.GetState();
     bool IsKeyPressed(KeyboardState state, Keys key) { // if key was only just pressed
         return state.IsKeyDown(key) && !lastKeyState.IsKeyDown(key);
     }

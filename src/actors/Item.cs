@@ -10,10 +10,11 @@ public class Item : GameObject
 {
 
     static Texture2D texture = Game1.contentManager.Load<Texture2D>("placeholder");
+    Vector2 defaultScale = new Vector2(3, 3);
     
     public Item() : base("item"){
         SetSprite(new Sprite(texture));
-        transform.localScale = new Vector2(3,3);
+        transform.localScale = defaultScale;
     }
     public Player carryingPlayer = null;
     public override void Update(GameTime gameTime)
@@ -29,6 +30,7 @@ public class Item : GameObject
     public void SetCarrier(Player player) {
         transform.parent = player.transform;
         transform.localPosition = new Vector2(0,0);
+        sprite.transform.localScale = new Vector2(1, 1);
         carryingPlayer = player;
     }
     public void Drop(Vector2 position) {
