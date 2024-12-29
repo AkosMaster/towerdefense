@@ -23,8 +23,9 @@ public class Tower : GameObject
             elapsed -= shotInterval;
             double rotation = gameTime.TotalGameTime.TotalMilliseconds/1000f;
             Projectile proj = new Projectile(new Vector2((float)Math.Sin(rotation),(float)Math.Cos(rotation)));
-            proj.transform.localPosition = transform.localPosition;
+            proj.transform.localPosition = transform.GetPosition();
         }
+        elapsed += gameTime.ElapsedGameTime.Milliseconds;
     }
 
     private void CollectItems() {
@@ -48,10 +49,6 @@ public class Tower : GameObject
         }
     }
     public override void Update(GameTime gameTime) {
-        
-
-        elapsed += gameTime.ElapsedGameTime.Milliseconds;
-
         if (isBluePrint) {
             sprite.color = Color.Aqua * 0.5f;
             CollectItems();
