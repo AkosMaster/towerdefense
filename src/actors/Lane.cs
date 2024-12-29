@@ -25,11 +25,18 @@ public class Lane : IUpdateable
     float elapsed = 0;
     float spawnInterval = 2000;
 
-    public void Update(GameTime gameTime) {
+    public void Update(GameTime gameTime)
+    {
+        AttemptSpawn(gameTime);
+    }
+
+    private void AttemptSpawn(GameTime gameTime)
+    {
         elapsed += gameTime.ElapsedGameTime.Milliseconds;
 
         //spawn enemy
-        if (elapsed > spawnInterval) {
+        if (elapsed > spawnInterval)
+        {
             elapsed -= spawnInterval;
             Enemy enemy = new Enemy(this);
         }

@@ -14,6 +14,7 @@ public class Sprite : IDrawable
     private readonly Texture2D spriteTexture;
 
     public Transform transform = new Transform();
+    
     public Sprite(Texture2D _texture) {
         spriteTexture = _texture;
 

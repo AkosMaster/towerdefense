@@ -29,7 +29,7 @@ public abstract class GameObject : IUpdateable
         gameObjectsByTag[tag].Remove(this);
     }
 
-    public void setSprite(Sprite _sprite) {
+    public void SetSprite(Sprite _sprite) {
         sprite = _sprite;
         sprite.transform.parent = transform;
     }

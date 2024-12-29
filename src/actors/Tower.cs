@@ -9,7 +9,7 @@ public class Tower : GameObject
 {
 
     public Tower() : base("tower") {
-        setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("basic_mushroom")));
+        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("basic_mushroom")));
         sprite.transform.localScale = new Vector2(0.2f,0.2f);
     }
     

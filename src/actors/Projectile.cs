@@ -10,30 +10,44 @@ public class Projectile : GameObject
     public float speed = 0.1f;
     GameObject target;
     Vector2 direction;
+
     public Projectile(GameObject _target) : base("projectile"){
         target = _target;
-        setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
+        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
         targetMode = true;
         collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     }
+
     public Projectile(Vector2 _direction) : base("projectile"){
         direction = _direction;
         direction.Normalize();
-        setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
+        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("bullet1")));
         
         collider.shapes.Add(new CCircle(new Vector2(0,0), 1));
     } 
-    public override void Update(GameTime gameTime) {
-        if (targetMode) {
+
+    public override void Update(GameTime gameTime)
+    {
+        if (targetMode)
+        {
             Vector2 directionVector = target.transform.GetPosition() - transform.GetPosition();
             directionVector.Normalize();
             transform.localPosition += directionVector * speed * gameTime.ElapsedGameTime.Milliseconds;
-        } else {
+        }
+        else
+        {
             transform.localPosition += direction * speed * gameTime.ElapsedGameTime.Milliseconds;
         }
 
-        foreach(GameObject enemy in GameObject.getGameObjectsByTag("enemy")) {
-            if (enemy.collider.CheckIntersection(collider)) {
+        CheckForHit();
+    }
+
+    private void CheckForHit()
+    {
+        foreach (GameObject enemy in GameObject.getGameObjectsByTag("enemy"))
+        {
+            if (enemy.collider.CheckIntersection(collider))
+            {
                 enemy.Delete();
                 this.Delete();
                 return;

@@ -15,7 +15,8 @@ public class Transform
     public Vector2 GetPosition() {
         if (parent == null) {
             return localPosition;
-        } else {
+        } 
+        else {
             return localPosition + parent.GetPosition();
         }
     }
@@ -23,7 +24,8 @@ public class Transform
     public Vector2 GetScale() {
         if (parent == null) {
             return localScale;
-        } else {
+        } 
+        else {
             return localScale * parent.GetScale();
         }
     }

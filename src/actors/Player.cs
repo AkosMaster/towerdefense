@@ -7,40 +7,62 @@ namespace towerdefense;
 public class Player : GameObject
 {
     public Player() : base("player") {
-        setSprite(new Sprite(Game1.contentManager.Load<Texture2D>("archer")));
+        SetSprite(new Sprite(Game1.contentManager.Load<Texture2D>("archer")));
     }
+
+    float speed = 0.15f;
+
+    Vector2 moveInput;
+    bool interactInput;
 
     public Vector2 facing;
 
-    void useHammer() {
+    public override void Update(GameTime gameTime)
+    {
+
+        float elapsed = gameTime.ElapsedGameTime.Milliseconds;
+
+        ReadInput();
+        transform.localPosition += moveInput * speed * elapsed;
+
+        if (interactInput)
+            UseHammer();
+
+
+        // if moving, update facing
+        UpdateFacing();
 
     }
 
+    void UseHammer() {
 
-    public override void Update(GameTime gameTime) {
+    }
+
+    void ReadInput()
+    {
         KeyboardState keyState = Keyboard.GetState();
-        Vector2 move = Vector2.Zero;
-        float speed = 0.15f;
-        float elapsed = gameTime.ElapsedGameTime.Milliseconds;
+
+        Vector2 moveInput = Vector2.Zero;
 
         if (keyState.IsKeyDown(Keys.W))
-            move += new Vector2(0, -speed*elapsed);
+            moveInput += new Vector2(0, -1);
         if (keyState.IsKeyDown(Keys.S))
-            move += new Vector2(0, speed*elapsed);
+            moveInput += new Vector2(0, 1);
         if (keyState.IsKeyDown(Keys.A))
-            move += new Vector2(-speed*elapsed, 0);
+            moveInput += new Vector2(-1, 0);
         if (keyState.IsKeyDown(Keys.D))
-            move += new Vector2(speed*elapsed, 0);
-        
-        if (keyState.IsKeyDown(Keys.E))
-            useHammer();
-        
-        // if moving, update facing
-        if (move.LengthSquared() > float.Epsilon) {
-            facing = move;
-            move.Normalize();
-        }
+            moveInput += new Vector2(1, 0);
 
-        transform.localPosition += move;
+        interactInput = keyState.IsKeyDown(Keys.E);
+
+    }
+
+    private void UpdateFacing()
+    {
+        if (moveInput.LengthSquared() > float.Epsilon)
+        {
+            facing = moveInput;
+            moveInput.Normalize();
+        }
     }
 }
