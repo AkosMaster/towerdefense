@@ -58,7 +58,7 @@ public class Projectile : GameObject
 
     private void CheckForHit()
     {
-        foreach (Enemy enemy in GameObject.getGameObjectsByTag("enemy"))
+        foreach (Enemy enemy in GameObject.GetGameObjectsByTag("enemy"))
         {
             if (enemy.collider.CheckIntersection(collider))
             {
