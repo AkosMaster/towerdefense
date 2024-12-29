@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,6 +10,8 @@ public class Player : GameObject
 {
     static Texture2D texture = Game1.contentManager.Load<Texture2D>("archer");
     Collider hammerCollider = new Collider();
+
+    public Item carriedItem = null;
     public Player() : base("player") {
         SetSprite(new Sprite(texture));
 
@@ -20,6 +23,7 @@ public class Player : GameObject
 
     Vector2 moveInput;
     bool interactInput;
+    bool hammerInput;
 
     public Vector2 facing;
 
@@ -31,15 +35,43 @@ public class Player : GameObject
         ReadInput();
         transform.localPosition += moveInput * speed * elapsed;
 
-        if (interactInput)
-            UseHammer();
-
-
         // if moving, update facing
         UpdateFacing();
 
         // put hammer collider in front of player.
-        hammerCollider.transform.localPosition = facing * 10;
+        hammerCollider.transform.localPosition = facing * 30;
+
+        if (hammerInput) {
+            if (carriedItem == null) {
+                UseHammer();
+            }
+        } else if (interactInput) {
+            if (carriedItem == null) {
+                PickupItem();
+            } else {
+                // drop item
+                carriedItem.Drop(transform.GetPosition() + facing * 30);
+                carriedItem = null;
+                
+            }
+        }
+    }
+
+    void PickupItem() { // pickup nearest item
+        Item nearestItem = null;
+        float nearestDistance = 99999f;
+        foreach (Item item in GameObject.getGameObjectsByTag("item")) {
+            float distance = (item.transform.GetPosition() - transform.GetPosition()).Length();
+            if (distance < 30 && distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestItem = item;
+            }
+        }
+
+        if (nearestItem != null) {
+            carriedItem = nearestItem;
+            nearestItem.SetCarrier(this);
+        }
     }
 
     void UseHammer() {
@@ -52,6 +84,10 @@ public class Player : GameObject
         }
     }
 
+    KeyboardState lastKeyState = Keyboard.GetState();
+    bool IsKeyPressed(KeyboardState state, Keys key) { // if key was only just pressed
+        return state.IsKeyDown(key) && !lastKeyState.IsKeyDown(key);
+    }
     void ReadInput()
     {
         KeyboardState keyState = Keyboard.GetState();
@@ -67,7 +103,10 @@ public class Player : GameObject
         if (keyState.IsKeyDown(Keys.D))
             moveInput += new Vector2(1, 0);
 
-        interactInput = keyState.IsKeyDown(Keys.E);
+        hammerInput = IsKeyPressed(keyState, Keys.Space);
+        interactInput = IsKeyPressed(keyState, Keys.E);
+
+        lastKeyState = keyState;
 
     }
 

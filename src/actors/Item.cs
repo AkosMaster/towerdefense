@@ -15,12 +15,25 @@ public class Item : GameObject
         SetSprite(new Sprite(texture));
         transform.localScale = new Vector2(3,3);
     }
-
+    public Player carryingPlayer = null;
     public override void Update(GameTime gameTime)
     {
-        sprite.transform.localPosition.Y = (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds/1000f)*10;
-        sprite.transform.localScale.X = Math.Abs((float)Math.Cos(gameTime.TotalGameTime.TotalMilliseconds/1000f));
+        if (carryingPlayer == null) {
+            // float animation
+            sprite.transform.localPosition.Y = (float)Math.Sin(gameTime.TotalGameTime.TotalMilliseconds/1000f)*10;
+            sprite.transform.localScale.X = Math.Abs((float)Math.Cos(gameTime.TotalGameTime.TotalMilliseconds/1000f));
+        }
 
+    }
 
+    public void SetCarrier(Player player) {
+        transform.parent = player.transform;
+        transform.localPosition = new Vector2(0,0);
+        carryingPlayer = player;
+    }
+    public void Drop(Vector2 position) {
+        transform.parent = null;
+        transform.localPosition = position;
+        carryingPlayer = null;
     }
 }
