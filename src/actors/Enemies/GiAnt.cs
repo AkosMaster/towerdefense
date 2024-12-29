@@ -15,4 +15,8 @@ public class GiAnt : Enemy
         health = 300;
     }
 
+    protected override void OnDeath() {
+        TestItem droppedItem = new TestItem();
+        droppedItem.transform.localPosition = transform.GetPosition();
+    }
 }

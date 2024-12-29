@@ -45,9 +45,14 @@ public class Enemy : GameObject
         timeSinceDamaged += gameTime.ElapsedGameTime.Milliseconds;
     }
 
+    protected virtual void OnDeath() {
+
+    }
+
      bool CheckAlive(GameTime gameTime) {
         if (health <= 0) {
             if (timeSinceDeath > 500) {
+                OnDeath();
                 this.Delete();
             } else {
                 timeSinceDeath += gameTime.ElapsedGameTime.Milliseconds;
