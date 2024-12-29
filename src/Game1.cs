@@ -11,8 +11,8 @@ namespace towerdefense;
 
 public class Game1 : Game
 {
-    private GraphicsDeviceManager _graphics;
-    private Player player;
+    GraphicsDeviceManager _graphics;
+    Player player;
 
     public static ContentManager contentManager;
     public static Random random = new Random();
@@ -30,11 +30,12 @@ public class Game1 : Game
         base.Initialize();
     }
 
-    private SpriteBatch targetBatch;
-    private RenderTarget2D renderTarget;
+    SpriteBatch targetBatch;
+    RenderTarget2D renderTarget;
 
     public static int virtualWidth = 1920; // relative width of game
     public static int virtualHeight = 1080; // relative height of game
+
     protected override void LoadContent()
     {
         contentManager = Content;
@@ -72,15 +73,20 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
+        CheckExitInput();
 
         UpdateManager.actorManager.Update(gameTime);
 
         base.Update(gameTime);
 
-        Debug.Print("[actor count]: " + UpdateManager.actorManager.getActors().Count.ToString() 
+        Debug.Print("[actor count]: " + UpdateManager.actorManager.getActors().Count.ToString()
             + " [sprite count]: " + SpriteManager.spriteManager.getSprites().Count.ToString());
+    }
+
+    private void CheckExitInput()
+    {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
     }
 
     protected override void Draw(GameTime gameTime)
@@ -102,10 +108,13 @@ public class Game1 : Game
         // calculate the size of the actual game rectangle so that aspect ratio is kept (simple coordinate math)
         Rectangle gameRect;
         float virtualAspectRatio = (float)virtualHeight / (float)virtualWidth;
-        if (Window.ClientBounds.Width * virtualAspectRatio <= Window.ClientBounds.Height) {
+        if (Window.ClientBounds.Width * virtualAspectRatio <= Window.ClientBounds.Height)
+         {
             int maxHeight = (int)(Window.ClientBounds.Width * virtualAspectRatio);
             gameRect = new Rectangle(0, (Window.ClientBounds.Height - maxHeight)/2, Window.ClientBounds.Width, maxHeight);
-        } else {
+        } 
+        else 
+        {
             int maxWidth = (int)(Window.ClientBounds.Height / virtualAspectRatio);
             gameRect = new Rectangle((Window.ClientBounds.Width - maxWidth)/2, 0, maxWidth, Window.ClientBounds.Height);
         }

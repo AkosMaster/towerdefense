@@ -8,24 +8,29 @@ using Microsoft.Xna.Framework.Input;
 
 namespace towerdefense;
 
-public abstract class CShape {
-
+public abstract class CShape 
+{
 }
 
-public class CCircle : CShape {
+public class CCircle : CShape 
+{
     public Vector2 center;
     public float radius;
 
-    public CCircle(Vector2 _center, float _radius) {
+    public CCircle(Vector2 _center, float _radius)
+    {
         center = _center;
         radius = _radius;
     }
 }
-public class CRectangle : CShape {
+
+public class CRectangle : CShape 
+{
     public Vector2 center;
     public Vector2 scale;
 
-    public CRectangle(Vector2 _center, Vector2 _scale) {
+    public CRectangle(Vector2 _center, Vector2 _scale)
+    {
         center = _center;
         scale = _scale;
     }
@@ -57,7 +62,8 @@ public class Collider : IDrawable
         
     }
 
-    static bool CheckCircleCircle(CCircle c1, Transform t1, CCircle c2, Transform t2) {
+    static bool CheckCircleCircle(CCircle c1, Transform t1, CCircle c2, Transform t2)
+    {
         Vector2 c1_center = c1.center + t1.GetPosition();
         Vector2 c2_center = c2.center + t2.GetPosition();
 
@@ -65,7 +71,8 @@ public class Collider : IDrawable
         return distance <= c1.radius + c2.radius;
     }
 
-    static bool CheckRectRect(CRectangle r1, Transform t1, CRectangle r2, Transform t2) {
+    static bool CheckRectRect(CRectangle r1, Transform t1, CRectangle r2, Transform t2) 
+    {
         Vector2 r1_center = r1.center + t1.GetPosition();
         Vector2 r2_center = r2.center + t2.GetPosition();
 
@@ -75,7 +82,8 @@ public class Collider : IDrawable
         r1_center.Y - r1.scale.Y / 2 < r2_center.Y + r2.scale.Y / 2;
     }
 
-    static bool CheckCircleRect(CCircle circle, Transform t1, CRectangle rect, Transform t2) {
+    static bool CheckCircleRect(CCircle circle, Transform t1, CRectangle rect, Transform t2) 
+    {
 
         Vector2 circle_center = circle.center + t1.GetPosition();
         Vector2 rect_center = rect.center + t2.GetPosition();
@@ -113,7 +121,8 @@ public class Collider : IDrawable
         return false;
     }
 
-    public bool CheckIntersection(Collider other) {
+    public bool CheckIntersection(Collider other) 
+    {
         foreach (CShape shape in shapes) 
         {
             foreach(CShape otherShape in other.shapes)

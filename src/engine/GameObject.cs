@@ -13,7 +13,9 @@ public abstract class GameObject : IUpdateable
     public Transform transform = new Transform();
     public Collider collider = new Collider();
     string tag;
-    public GameObject(string _tag){
+
+    public GameObject(string _tag)
+    {
         tag = _tag;
         UpdateManager.actorManager.registerActor(this);
         collider.transform.parent = transform;
@@ -24,13 +26,15 @@ public abstract class GameObject : IUpdateable
         gameObjectsByTag[tag].Add(this);
     }
 
-    public void Delete() {
+    public void Delete() 
+    {
         UpdateManager.actorManager.unregisterActor(this);
         sprite.Delete();
         gameObjectsByTag[tag].Remove(this);
     }
 
-    public void SetSprite(Sprite _sprite) {
+    public void SetSprite(Sprite _sprite) 
+    {
         sprite = _sprite;
         sprite.transform.parent = transform;
     }
@@ -38,8 +42,10 @@ public abstract class GameObject : IUpdateable
     public abstract void Update(GameTime gameTime);
 
     private static Dictionary<string, List<GameObject>> gameObjectsByTag = new Dictionary<string, List<GameObject>>();
-    public static List<GameObject> GetGameObjectsByTag(string tag) {
-        if (!gameObjectsByTag.ContainsKey(tag)) {
+    public static List<GameObject> GetGameObjectsByTag(string tag) 
+    {
+        if (!gameObjectsByTag.ContainsKey(tag)) 
+        {
             return new List<GameObject>();
         }
         return gameObjectsByTag[tag];
