@@ -10,8 +10,7 @@ public class Tower : GameObject
 {
     public const float pickupRange = 30;
     public bool isBluePrint = true;
-    static Texture2D texture = Game1.contentManager.Load<Texture2D>("basic_mushroom");
-    public Tower() : base("tower") 
+    public Tower(Texture2D texture) : base("tower") 
     {
         SetSprite(new Sprite(texture));
         transform.localScale = new Vector2(0.1f,0.1f);

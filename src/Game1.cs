@@ -55,13 +55,13 @@ public class Game1 : Game
         Lane lane1 = new Lane(new List<Vector2> { new Vector2(400, 400), new Vector2(500, 600), new Vector2(1000, 600) });
         UpdateManager.actorManager.registerActor(lane1);
 
-        Tower t1 = new Tower();
+        Tower t1 = new SimpleShroom();
         t1.transform.localPosition = new Vector2(500, 200);
 
-        Tower t2 = new Tower();
+        Tower t2 = new SimpleShroom();
         t2.transform.localPosition = new Vector2(200, 500);
 
-        Tower t3 = new Tower();
+        Tower t3 = new SimpleShroom();
         t3.transform.localPosition = new Vector2(1000, 600);
 
         ItemSpawner i1 = new ItemSpawner();
