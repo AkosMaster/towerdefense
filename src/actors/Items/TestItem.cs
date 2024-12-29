@@ -9,7 +9,6 @@ public class TestItem: Item
 
     public TestItem() : base(texture)
     {
-        SetSprite(new Sprite(texture));
         transform.localScale = defaultScale;
     }
 }
